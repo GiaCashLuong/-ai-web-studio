@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Web Studio – Liên hệ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .contact-wrap { display:grid; grid-template-columns:1fr 1.5fr; gap:3rem; align-items:start; }
+    @media(max-width:768px){ .contact-wrap{ grid-template-columns:1fr; } }
+    .info-item { display:flex; gap:1rem; align-items:flex-start; margin-bottom:1.5rem; }
+    .info-icon { font-size:1.5rem; flex-shrink:0; width:44px; height:44px; background:rgba(99,102,241,.12); border-radius:10px; display:flex; align-items:center; justify-content:center; }
+    .info-label { font-size:.8rem; color:var(--muted); margin-bottom:.15rem; }
+    .info-val { font-weight:600; }
+  </style>
+</head>
+<body>
+  <nav id="nav"></nav>
+
+  <div class="page">
+    <div class="container section">
+      <div class="text-center mb-4">
+        <h1 class="section-title" id="page_title">Liên hệ với chúng tôi</h1>
+        <p class="section-sub" id="page_sub">Bạn có câu hỏi hoặc muốn trao đổi về dự án? Hãy liên hệ ngay!</p>
+      </div>
+
+      <div class="contact-wrap">
+        <!-- INFO -->
+        <div>
+          <div class="info-item">
+            <div class="info-icon">📧</div>
+            <div>
+              <div class="info-label" id="lbl_email">Email</div>
+              <div class="info-val">hello@aiwebstudio.vn</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div>
+              <div class="info-label" id="lbl_phone">Điện thoại</div>
+              <div class="info-val">+84 901 234 567</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div>
+              <div class="info-label" id="lbl_addr">Địa chỉ</div>
+              <div class="info-val">TP. Hồ Chí Minh, Việt Nam</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">⏰</div>
+            <div>
+              <div class="info-label" id="lbl_hours">Giờ làm việc</div>
+              <div class="info-val" id="hours_val">Thứ 2 – Thứ 7, 8:00–18:00</div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+          <p class="text-muted text-sm" id="social_label">Hoặc tìm chúng tôi trên mạng xã hội</p>
+          <div class="flex gap-2 mt-2">
+            <a href="#" class="btn-secondary" style="padding:.5rem 1rem">Facebook</a>
+            <a href="#" class="btn-secondary" style="padding:.5rem 1rem">Zalo</a>
+            <a href="#" class="btn-secondary" style="padding:.5rem 1rem">LinkedIn</a>
+          </div>
+        </div>
+
+        <!-- FORM -->
+        <div class="card">
+          <h3 style="font-weight:700;margin-bottom:1.5rem" id="form_title">Gửi tin nhắn</h3>
+          <div id="alert-box"></div>
+          <form id="contact-form" onsubmit="sendMessage(event)">
+            <div class="grid-2">
+              <div class="form-group">
+                <label id="lbl_name">Họ và tên</label>
+                <input type="text" class="form-control" id="c-name" placeholder="Nguyễn Văn A" required />
+              </div>
+              <div class="form-group">
+                <label id="lbl_c_email">Email</label>
+                <input type="email" class="form-control" id="c-email" placeholder="you@example.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label id="lbl_subject">Chủ đề</label>
+              <input type="text" class="form-control" id="c-subject" placeholder="Tôi muốn hỏi về..." required />
+            </div>
+            <div class="form-group">
+              <label id="lbl_message">Nội dung tin nhắn</label>
+              <textarea class="form-control" id="c-message" rows="5" placeholder="Mô tả chi tiết..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%" id="send_btn">Gửi tin nhắn</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-brand">⚡ AI Web Studio</div>
+      <p id="footer_copy"></p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/js/config.js"></script>
+  <script>
+    const tx = {
+      vi: { page_title:'Liên hệ với chúng tôi', page_sub:'Bạn có câu hỏi hoặc muốn trao đổi về dự án? Hãy liên hệ ngay!', lbl_email:'Email', lbl_phone:'Điện thoại', lbl_addr:'Địa chỉ', lbl_hours:'Giờ làm việc', hours_val:'Thứ 2 – Thứ 7, 8:00–18:00', social_label:'Hoặc tìm chúng tôi trên mạng xã hội', form_title:'Gửi tin nhắn', lbl_name:'Họ và tên', lbl_c_email:'Email', lbl_subject:'Chủ đề', lbl_message:'Nội dung tin nhắn', send_btn:'Gửi tin nhắn', success_msg:'Tin nhắn đã được gửi! Chúng tôi sẽ phản hồi trong vòng 24 giờ.', footer_copy:'© 2025 AI Web Studio. Bảo lưu mọi quyền.' },
+      en: { page_title:'Contact Us', page_sub:"Have a question or want to discuss a project? Get in touch!", lbl_email:'Email', lbl_phone:'Phone', lbl_addr:'Address', lbl_hours:'Working Hours', hours_val:'Mon – Sat, 8:00–18:00', social_label:'Or find us on social media', form_title:'Send a Message', lbl_name:'Full Name', lbl_c_email:'Email', lbl_subject:'Subject', lbl_message:'Message', send_btn:'Send Message', success_msg:"Message sent! We'll reply within 24 hours.", footer_copy:'© 2025 AI Web Studio. All rights reserved.' }
+    };
+    const lang = localStorage.getItem('lang')||'vi';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      Object.keys(tx[lang]).forEach(k => { const el=document.getElementById(k); if(el) el.textContent=tx[lang][k]; });
+      renderNav('contact');
+    });
+
+    async function sendMessage(e) {
+      e.preventDefault();
+      const btn = document.getElementById('send_btn');
+      btn.textContent = '...'; btn.disabled = true;
+
+      const { error } = await supabase.from('contact_messages').insert({
+        name: document.getElementById('c-name').value,
+        email: document.getElementById('c-email').value,
+        subject: document.getElementById('c-subject').value,
+        message: document.getElementById('c-message').value,
+        lang,
+        created_at: new Date().toISOString()
+      });
+
+      if (error) {
+        document.getElementById('alert-box').innerHTML = `<div class="alert alert-error">${error.message}</div>`;
+      } else {
+        document.getElementById('alert-box').innerHTML = `<div class="alert alert-success">${tx[lang].success_msg}</div>`;
+        document.getElementById('contact-form').reset();
+      }
+      btn.textContent = tx[lang].send_btn; btn.disabled = false;
+    }
+  </script>
+</body>
+</html>
