@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Web Studio – Thiết kế web bằng AI</title>
+  <meta name="description" content="Chúng tôi xây dựng website chuyên nghiệp với sức mạnh AI – nhanh hơn, thông minh hơn, tốt hơn." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .service-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+    .stat-num { font-size: 2.5rem; font-weight: 800; color: var(--primary); }
+    .stat-label { color: var(--muted); font-size: .9rem; margin-top: .25rem; }
+    .testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+    .stars { color: #fbbf24; letter-spacing: 2px; }
+    .process-num { font-size: 3rem; font-weight: 800; color: rgba(99,102,241,.15); line-height: 1; }
+  </style>
+</head>
+<body>
+  <nav id="nav"></nav>
+
+  <!-- HERO -->
+  <section class="hero page">
+    <div class="container">
+      <div class="hero-badge">✨ <span id="hero_badge">Công nghệ AI thế hệ mới</span></div>
+      <h1 id="hero_h1">Website đẳng cấp,<br /><span>tạo bởi AI</span></h1>
+      <p id="hero_p">Mô tả dự án của bạn, AI của chúng tôi sẽ lập tức tạo báo giá và bản kế hoạch hoàn chỉnh trong vài phút.</p>
+      <div class="hero-cta">
+        <a href="/auth.html" class="btn-primary btn-lg" id="hero_cta1">Bắt đầu ngay</a>
+        <a href="#services" class="btn-secondary btn-lg" id="hero_cta2">Xem dịch vụ</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section-sm" style="background: var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="grid-4 text-center">
+        <div><div class="stat-num">50+</div><div class="stat-label" id="stat1">Dự án hoàn thành</div></div>
+        <div><div class="stat-num">5x</div><div class="stat-label" id="stat2">Nhanh hơn truyền thống</div></div>
+        <div><div class="stat-num">98%</div><div class="stat-label" id="stat3">Khách hài lòng</div></div>
+        <div><div class="stat-num">24h</div><div class="stat-label" id="stat4">Thời gian phản hồi</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="container text-center">
+      <h2 class="section-title" id="svc_title">Dịch vụ của chúng tôi</h2>
+      <p class="section-sub" id="svc_sub">Từ landing page đến hệ thống phức tạp – AI giúp chúng tôi giao sản phẩm nhanh gấp 5 lần.</p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="service-icon">🚀</div>
+          <h3 id="svc1_title">Landing Page AI</h3>
+          <p class="text-muted mt-1" id="svc1_desc">Trang giới thiệu sản phẩm/dịch vụ chuyên nghiệp, tối ưu chuyển đổi, giao trong 24–48 giờ.</p>
+        </div>
+        <div class="card">
+          <div class="service-icon">🛒</div>
+          <h3 id="svc2_title">Website Thương mại điện tử</h3>
+          <p class="text-muted mt-1" id="svc2_desc">Cửa hàng online tích hợp thanh toán, quản lý kho, báo cáo doanh thu tự động.</p>
+        </div>
+        <div class="card">
+          <div class="service-icon">🤖</div>
+          <h3 id="svc3_title">Web App có AI</h3>
+          <p class="text-muted mt-1" id="svc3_desc">Ứng dụng web tích hợp chatbot, phân tích dữ liệu hoặc tự động hóa quy trình kinh doanh.</p>
+        </div>
+        <div class="card">
+          <div class="service-icon">📊</div>
+          <h3 id="svc4_title">Dashboard & Admin</h3>
+          <p class="text-muted mt-1" id="svc4_desc">Bảng điều khiển quản trị nội bộ, báo cáo trực quan, phân quyền người dùng.</p>
+        </div>
+        <div class="card">
+          <div class="service-icon">📱</div>
+          <h3 id="svc5_title">Responsive & PWA</h3>
+          <p class="text-muted mt-1" id="svc5_desc">Website hoạt động mượt mà trên mọi thiết bị, có thể cài đặt như ứng dụng di động.</p>
+        </div>
+        <div class="card">
+          <div class="service-icon">🔧</div>
+          <h3 id="svc6_title">Bảo trì & Nâng cấp</h3>
+          <p class="text-muted mt-1" id="svc6_desc">Hỗ trợ kỹ thuật, cập nhật tính năng, tối ưu hiệu suất theo yêu cầu hàng tháng.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" style="background: var(--surface);">
+    <div class="container text-center">
+      <h2 class="section-title" id="how_title">Quy trình làm việc</h2>
+      <p class="section-sub" id="how_sub">Chỉ 4 bước đơn giản để có website chuyên nghiệp của riêng bạn.</p>
+      <div class="steps mt-4">
+        <div class="step"><h4 id="step1">Mô tả dự án</h4><p id="step1p">Điền yêu cầu ngắn gọn</p></div>
+        <div class="step"><h4 id="step2">AI tạo báo giá</h4><p id="step2p">Tự động trong vài giây</p></div>
+        <div class="step"><h4 id="step3">Ký & Thanh toán</h4><p id="step3p">Xác nhận trực tuyến</p></div>
+        <div class="step"><h4 id="step4">Nhận sản phẩm</h4><p id="step4p">Giao đúng hạn cam kết</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section">
+    <div class="container text-center">
+      <h2 class="section-title" id="testi_title">Khách hàng nói gì</h2>
+      <p class="section-sub" id="testi_sub">Những phản hồi thực tế từ khách hàng đã sử dụng dịch vụ.</p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="stars">★★★★★</div>
+          <p class="mt-2 text-muted">"Chỉ mô tả vài dòng, AI đã tạo ra bản báo giá cực kỳ chi tiết và chính xác. Tiết kiệm được rất nhiều thời gian thương lượng."</p>
+          <div class="flex gap-2 mt-3" style="align-items:center">
+            <div class="testimonial-avatar">NT</div>
+            <div style="text-align:left"><div style="font-weight:600">Nguyễn Thành</div><div class="text-sm text-muted">CEO, TechStart</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="stars">★★★★★</div>
+          <p class="mt-2 text-muted">"Website thương mại điện tử của tôi được giao trong 3 ngày. Chất lượng vượt mong đợi với mức giá hợp lý."</p>
+          <div class="flex gap-2 mt-3" style="align-items:center">
+            <div class="testimonial-avatar">LM</div>
+            <div style="text-align:left"><div style="font-weight:600">Lê Minh</div><div class="text-sm text-muted">Chủ shop FashionX</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="stars">★★★★★</div>
+          <p class="mt-2 text-muted">"Quy trình ký hợp đồng online và thanh toán Stripe rất tiện lợi. Không cần gặp mặt, mọi thứ đều số hóa hoàn toàn."</p>
+          <div class="flex gap-2 mt-3" style="align-items:center">
+            <div class="testimonial-avatar">TH</div>
+            <div style="text-align:left"><div style="font-weight:600">Trần Hương</div><div class="text-sm text-muted">Marketing Manager</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="section" style="background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(99,102,241,.2) 0%, transparent 70%);">
+    <div class="container text-center">
+      <h2 class="section-title" id="cta_title">Sẵn sàng bắt đầu?</h2>
+      <p class="section-sub" id="cta_sub">Tạo tài khoản miễn phí và nhận báo giá ngay hôm nay.</p>
+      <a href="/auth.html" class="btn-primary btn-lg" id="cta_btn">Tạo tài khoản miễn phí</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-brand">⚡ AI Web Studio</div>
+      <p id="footer_copy"></p>
+      <p class="mt-2"><a href="/contact.html" id="footer_contact">Liên hệ</a> · <a href="/auth.html" id="footer_privacy">Đăng nhập</a></p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/js/config.js"></script>
+  <script>
+    const texts = {
+      vi: {
+        hero_badge: 'Công nghệ AI thế hệ mới', hero_h1: 'Website đẳng cấp,<br/><span>tạo bởi AI</span>',
+        hero_p: 'Mô tả dự án của bạn, AI của chúng tôi sẽ lập tức tạo báo giá và bản kế hoạch hoàn chỉnh trong vài phút.',
+        hero_cta1: 'Bắt đầu ngay', hero_cta2: 'Xem dịch vụ',
+        stat1:'Dự án hoàn thành',stat2:'Nhanh hơn truyền thống',stat3:'Khách hài lòng',stat4:'Thời gian phản hồi',
+        svc_title:'Dịch vụ của chúng tôi', svc_sub:'Từ landing page đến hệ thống phức tạp – AI giúp chúng tôi giao sản phẩm nhanh gấp 5 lần.',
+        svc1_title:'Landing Page AI',svc1_desc:'Trang giới thiệu sản phẩm/dịch vụ chuyên nghiệp, tối ưu chuyển đổi, giao trong 24–48 giờ.',
+        svc2_title:'Website Thương mại điện tử',svc2_desc:'Cửa hàng online tích hợp thanh toán, quản lý kho, báo cáo doanh thu tự động.',
+        svc3_title:'Web App có AI',svc3_desc:'Ứng dụng web tích hợp chatbot, phân tích dữ liệu hoặc tự động hóa quy trình kinh doanh.',
+        svc4_title:'Dashboard & Admin',svc4_desc:'Bảng điều khiển quản trị nội bộ, báo cáo trực quan, phân quyền người dùng.',
+        svc5_title:'Responsive & PWA',svc5_desc:'Website hoạt động mượt mà trên mọi thiết bị, có thể cài đặt như ứng dụng di động.',
+        svc6_title:'Bảo trì & Nâng cấp',svc6_desc:'Hỗ trợ kỹ thuật, cập nhật tính năng, tối ưu hiệu suất theo yêu cầu hàng tháng.',
+        how_title:'Quy trình làm việc', how_sub:'Chỉ 4 bước đơn giản để có website chuyên nghiệp của riêng bạn.',
+        step1:'Mô tả dự án',step1p:'Điền yêu cầu ngắn gọn',step2:'AI tạo báo giá',step2p:'Tự động trong vài giây',
+        step3:'Ký & Thanh toán',step3p:'Xác nhận trực tuyến',step4:'Nhận sản phẩm',step4p:'Giao đúng hạn cam kết',
+        testi_title:'Khách hàng nói gì', testi_sub:'Những phản hồi thực tế từ khách hàng đã sử dụng dịch vụ.',
+        cta_title:'Sẵn sàng bắt đầu?', cta_sub:'Tạo tài khoản miễn phí và nhận báo giá ngay hôm nay.',
+        cta_btn:'Tạo tài khoản miễn phí', footer_copy:'© 2025 AI Web Studio. Bảo lưu mọi quyền.',
+        footer_contact:'Liên hệ', footer_privacy:'Đăng nhập',
+      },
+      en: {
+        hero_badge: 'Next-generation AI technology', hero_h1: 'Premium websites,<br/><span>built by AI</span>',
+        hero_p: 'Describe your project and our AI instantly generates a complete quote and plan in minutes.',
+        hero_cta1: 'Get Started', hero_cta2: 'Our Services',
+        stat1:'Projects Done',stat2:'Faster Than Traditional',stat3:'Client Satisfaction',stat4:'Response Time',
+        svc_title:'Our Services', svc_sub:'From landing pages to complex systems – AI helps us ship 5× faster.',
+        svc1_title:'AI Landing Page',svc1_desc:'Professional product/service pages, conversion-optimized, delivered in 24–48 hours.',
+        svc2_title:'E-commerce Website',svc2_desc:'Online store with integrated payments, inventory management and automated revenue reporting.',
+        svc3_title:'AI-Powered Web App',svc3_desc:'Web applications with chatbot, data analysis, or business process automation.',
+        svc4_title:'Dashboard & Admin',svc4_desc:'Internal admin panels, visual reports, and role-based access control.',
+        svc5_title:'Responsive & PWA',svc5_desc:'Websites that work flawlessly on every device and can be installed as a mobile app.',
+        svc6_title:'Maintenance & Upgrades',svc6_desc:'Technical support, feature updates, and performance optimization on demand.',
+        how_title:'How It Works', how_sub:'Just 4 simple steps to get your professional website.',
+        step1:'Describe Project',step1p:'Fill in your brief',step2:'AI Generates Quote',step2p:'Automated in seconds',
+        step3:'Sign & Pay',step3p:'Confirm online',step4:'Receive Product',step4p:'Delivered on time',
+        testi_title:'What Clients Say', testi_sub:'Real feedback from clients who have used our service.',
+        cta_title:'Ready to start?', cta_sub:'Create a free account and get your quote today.',
+        cta_btn:'Create Free Account', footer_copy:'© 2025 AI Web Studio. All rights reserved.',
+        footer_contact:'Contact', footer_privacy:'Login',
+      }
+    };
+    document.addEventListener('DOMContentLoaded', () => {
+      const lang = localStorage.getItem('lang') || 'vi';
+      const tx = texts[lang];
+      Object.keys(tx).forEach(k => {
+        const el = document.getElementById(k);
+        if (el) el.innerHTML = tx[k];
+      });
+      renderNav('home');
+    });
+  </script>
+</body>
+</html>
