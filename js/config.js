@@ -7,7 +7,8 @@ const STRIPE_PUBLISHABLE_KEY = 'pk_test_51TOrhICJmqcefePCn4fUZblKi0qivAVicSdgjYn
 const CLAUDE_API_KEY = 'sk-ant-YOUR_CLAUDE_KEY'; // used server-side only via Supabase Edge Function
 
 // Supabase client (loaded via CDN in each HTML file)
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const { createClient } = window.supabase;
+window.supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Language state
 let currentLang = localStorage.getItem('lang') || 'vi';
