@@ -61,13 +61,16 @@ async function renderNav(activePage) {
       <a href="/contact.html" ${activePage==='contact'?'class="active"':''}>${t('nav_contact')}</a>
       ${user
         ? `<a href="/dashboard.html" ${activePage==='dashboard'?'class="active"':''}>${t('nav_dashboard')}</a>
-           <button class="btn-ghost" onclick="signOut()">${t('nav_logout')}</button>`
+           <button class="btn-ghost" id="nav-signout-btn">${t('nav_logout')}</button>`
         : `<a href="/auth.html" class="btn-primary">${t('nav_login')}</a>`
       }
-      <button class="lang-toggle" onclick="toggleLang()">${currentLang==='vi'?'EN':'VI'}</button>
+      <button class="lang-toggle" id="nav-lang-btn">${currentLang==='vi'?'EN':'VI'}</button>
     </div>
-    <button class="nav-toggle" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+    <button class="nav-toggle" id="nav-menu-btn">☰</button>
   `;
+  nav.querySelector('#nav-signout-btn')?.addEventListener('click', signOut);
+  nav.querySelector('#nav-lang-btn').addEventListener('click', toggleLang);
+  nav.querySelector('#nav-menu-btn').addEventListener('click', () => nav.classList.toggle('open'));
 }
 
 async function signOut() {
