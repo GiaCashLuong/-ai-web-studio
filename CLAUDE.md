@@ -114,6 +114,81 @@ All features working as of 2026-04-23:
 
 ---
 
+## MCP Tools (Claude tự dùng, không cần thao tác tay)
+
+Claude có 5 MCP servers kết nối trực tiếp — mọi thao tác với các dịch vụ này đều tự động, không cần mở dashboard:
+
+| MCP | Làm được gì |
+|-----|-------------|
+| **GitHub** | Đọc/ghi code, push file, tạo commit lên repo `GiaCashLuong/-ai-web-studio` |
+| **Supabase** | Truy vấn DB, chạy SQL, xem logs, quản lý migrations |
+| **Vercel** | Xem deployments, build logs, runtime logs, kiểm tra trạng thái deploy |
+| **Stripe** | Xem customers, invoices, payments, balance; tạo products/prices/payment links |
+| **Playwright** | Điều khiển Brave browser để test UI, chụp screenshot, kiểm tra console |
+
+> Config lưu tại `C:\Users\gsgze\.claude.json`. Vercel và Stripe dùng OAuth — nếu hết session thì gọi `mcp__vercel__authenticate` / `mcp__stripe__authenticate` để đăng nhập lại.
+
+### Quy trình deploy tự động
+1. Claude viết/sửa code → push lên GitHub (GitHub MCP)
+2. Vercel tự deploy sau ~30s
+3. Stop hook tự gọi Observatory API → kiểm tra điểm bảo mật
+4. Nếu < 100/100 → fix tiếp, chưa coi là xong
+
+---
+
+## Chiến lược Ảnh & Media
+
+### Phân loại tư liệu
+
+**Lấy từ bên ngoài** (unsplash/pexels/pixabay — dùng URL trực tiếp, không cần xin):
+- Ảnh background, hero section, texture, phong cảnh
+- Ảnh minh họa chung (công nghệ, teamwork, office...)
+- Nhạc nền, sound effects
+- Video stock minh họa
+
+**Lấy từ khách hàng** (phải xin — tạm thời dùng placeholder):
+- Ảnh sản phẩm/dịch vụ thực tế
+- Avatar/ảnh chân dung feedback khách hàng
+- Ảnh team, nhân viên, văn phòng
+- Logo, brand assets
+- Video giới thiệu công ty
+
+### Quy tắc Placeholder
+Khi build mà chưa có ảnh từ khách hàng, tạo placeholder bằng CSS thuần:
+```html
+<div class="placeholder-img" data-label="Ảnh sản phẩm chính – 800×600px">
+  Ảnh sản phẩm chính<br>800×600px
+</div>
+```
+```css
+.placeholder-img {
+  background: #111;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: .85rem;
+  padding: 1rem;
+  border: 1px dashed #444;
+  border-radius: 8px;
+  width: 100%;
+  aspect-ratio: 4/3;
+}
+```
+
+### Báo cáo ảnh cần xin
+Sau khi build xong, tổng hợp danh sách placeholder còn lại và thông báo cho người dùng:
+```
+📋 Ảnh cần xin từ khách hàng:
+1. [Ảnh sản phẩm chính] – kích thước tối thiểu 800×600px
+2. [Avatar khách hàng A] – ảnh vuông, tối thiểu 200×200px
+...
+```
+Sau khi có ảnh → thay thế placeholder bằng `<img src="...">` hoặc background-image.
+
+---
+
 ## Design Resources
 
 ### 1. Bố cục / Layout (chỉ dùng để tham khảo, không nhúng)
