@@ -1,6 +1,6 @@
 const tx = {
-  vi: { back_link:'← Quay lại Dashboard', lbl_req:'Yêu cầu của bạn', lbl_features:'Tính năng bao gồm', lbl_timeline:'Timeline', lbl_pricing:'Chi tiết báo giá', lbl_sign:'Ký xác nhận hợp đồng', sign_hint:'Ký tên vào ô bên dưới để xác nhận đồng ý với báo giá này.', btn_clear:'Xoá', btn_confirm_sign:'Xác nhận & Ký', btn_pay:'Thanh toán qua Stripe', pay_note:'Thanh toán an toàn qua Stripe. Thẻ Visa, Mastercard, JCB.', status_pending:'Đang chờ báo giá từ AI...', status_paid:'Dự án đã được thanh toán!', err_sign:'Vui lòng ký tên trước khi xác nhận.', err_load:'Không tìm thấy dự án.', signing:'Đang lưu chữ ký...', paying:'Đang chuyển đến Stripe...' },
-  en: { back_link:'← Back to Dashboard', lbl_req:'Your Request', lbl_features:'Features Included', lbl_timeline:'Timeline', lbl_pricing:'Pricing Details', lbl_sign:'Sign to Confirm', sign_hint:'Sign in the box below to confirm you agree with this quote.', btn_clear:'Clear', btn_confirm_sign:'Confirm & Sign', btn_pay:'Pay via Stripe', pay_note:'Secure payment via Stripe. Visa, Mastercard, JCB accepted.', status_pending:'Waiting for AI quote...', status_paid:'Project has been paid!', err_sign:'Please sign before confirming.', err_load:'Project not found.', signing:'Saving signature...', paying:'Redirecting to Stripe...' }
+  vi: { back_link:'← Quay lại Dashboard', lbl_req:'Yêu cầu của bạn', lbl_features:'Tính năng bao gồm', lbl_timeline:'Timeline', lbl_pricing:'Chi tiết báo giá', lbl_sign:'Ký xác nhận hợp đồng', sign_hint:'Ký tên vào ô bên dưới để xác nhận đồng ý với báo giá này.', btn_clear:'Xoá', btn_confirm_sign:'Xác nhận & Ký', btn_pay:'Thanh toán qua Stripe', btn_payos:'Tạo mã QR chuyển khoản', pay_note:'Thanh toán an toàn qua Stripe. Thẻ Visa, Mastercard, JCB.', pay_note_vietqr:'Chuyển khoản qua VietQR – tất cả ngân hàng Việt Nam.', status_pending:'Đang chờ báo giá từ AI...', status_paid:'Dự án đã được thanh toán!', err_sign:'Vui lòng ký tên trước khi xác nhận.', err_load:'Không tìm thấy dự án.', signing:'Đang lưu chữ ký...', paying:'Đang chuyển đến Stripe...', creating_qr:'Đang tạo mã QR...', waiting_payment:'Đang chờ thanh toán... Trang tự cập nhật sau khi nhận tiền.', open_qr:'Mở trang thanh toán QR' },
+  en: { back_link:'← Back to Dashboard', lbl_req:'Your Request', lbl_features:'Features Included', lbl_timeline:'Timeline', lbl_pricing:'Pricing Details', lbl_sign:'Sign to Confirm', sign_hint:'Sign in the box below to confirm you agree with this quote.', btn_clear:'Clear', btn_confirm_sign:'Confirm & Sign', btn_pay:'Pay via Stripe', btn_payos:'Generate VietQR Code', pay_note:'Secure payment via Stripe. Visa, Mastercard, JCB accepted.', pay_note_vietqr:'Bank transfer via VietQR – all Vietnamese banks supported.', status_pending:'Waiting for AI quote...', status_paid:'Project has been paid!', err_sign:'Please sign before confirming.', err_load:'Project not found.', signing:'Saving signature...', paying:'Redirecting to Stripe...', creating_qr:'Creating QR code...', waiting_payment:'Waiting for payment... Page updates automatically.', open_qr:'Open QR Payment Page' }
 };
 const lang = localStorage.getItem('lang')||'vi';
 
@@ -106,11 +106,28 @@ function renderQuote(p) {
 
     ${isSigned ? `
     <div class="card" id="pay-card">
-      <button class="btn-primary btn-lg" style="width:100%" id="pay-btn">${tx[lang].btn_pay}</button>
-      <div class="stripe-logos mt-2">
-        <svg height="24" viewBox="0 0 60 25" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="20" font-size="18" fill="#6772e5" font-weight="bold">stripe</text></svg>
+      <div class="section-label">${lang==='vi'?'Chọn phương thức thanh toán':'Payment Method'}</div>
+      <div style="display:flex;gap:.5rem;margin-bottom:1.25rem;flex-wrap:wrap">
+        <button class="btn-secondary" id="tab-stripe" type="button" style="flex:1;min-width:140px;border:2px solid var(--primary);color:var(--primary)">💳 ${lang==='vi'?'Thẻ quốc tế':'Card'}</button>
+        <button class="btn-secondary" id="tab-vietqr" type="button" style="flex:1;min-width:140px">🏦 VietQR</button>
       </div>
-      <p class="pay-note">${tx[lang].pay_note}</p>
+
+      <div id="panel-stripe">
+        <button class="btn-primary btn-lg" style="width:100%" id="pay-btn">${tx[lang].btn_pay}</button>
+        <div class="stripe-logos mt-2">
+          <svg height="24" viewBox="0 0 60 25" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="20" font-size="18" fill="#6772e5" font-weight="bold">stripe</text></svg>
+        </div>
+        <p class="pay-note">${tx[lang].pay_note}</p>
+      </div>
+
+      <div id="panel-vietqr" style="display:none">
+        <button class="btn-primary btn-lg" style="width:100%" id="payos-btn">${tx[lang].btn_payos}</button>
+        <p class="pay-note mt-2">${tx[lang].pay_note_vietqr}</p>
+        <div id="payos-result" style="display:none;margin-top:1rem;text-align:center">
+          <a id="payos-link" href="#" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block;margin-bottom:1rem">${tx[lang].open_qr}</a>
+          <p class="text-muted text-sm" id="payos-status">⏳ ${tx[lang].waiting_payment}</p>
+        </div>
+      </div>
     </div>` : ''}
     ` : ''}
   `;
@@ -118,6 +135,9 @@ function renderQuote(p) {
   document.getElementById('clear-btn')?.addEventListener('click', clearSignature);
   document.getElementById('sign-btn')?.addEventListener('click', confirmSign);
   document.getElementById('pay-btn')?.addEventListener('click', startPayment);
+  document.getElementById('payos-btn')?.addEventListener('click', startPayos);
+  document.getElementById('tab-stripe')?.addEventListener('click', () => switchPayTab('stripe'));
+  document.getElementById('tab-vietqr')?.addEventListener('click', () => switchPayTab('vietqr'));
 
   if (!isSigned && !isPaid) initCanvas();
 }
@@ -184,6 +204,46 @@ async function startPayment() {
     return;
   }
   window.location.href = data.url;
+}
+
+function switchPayTab(tab) {
+  const isStripe = tab === 'stripe';
+  document.getElementById('panel-stripe').style.display = isStripe ? '' : 'none';
+  document.getElementById('panel-vietqr').style.display = isStripe ? 'none' : '';
+  const activeStyle = 'border:2px solid var(--primary);color:var(--primary)';
+  document.getElementById('tab-stripe').style.cssText = isStripe ? activeStyle : '';
+  document.getElementById('tab-vietqr').style.cssText = isStripe ? '' : activeStyle;
+}
+
+let payosPolling = null;
+
+async function startPayos() {
+  const btn = document.getElementById('payos-btn');
+  btn.textContent = tx[lang].creating_qr;
+  btn.disabled = true;
+
+  const { data, error } = await supabase.functions.invoke('create-payos-checkout', {
+    body: { projectId: project.id, lang }
+  });
+
+  if (error || !data?.checkoutUrl) {
+    showAlert('PayOS error: ' + (error?.message || data?.error || 'Unknown'), 'error');
+    btn.textContent = tx[lang].btn_payos;
+    btn.disabled = false;
+    return;
+  }
+
+  document.getElementById('payos-link').href = data.checkoutUrl;
+  document.getElementById('payos-result').style.display = 'block';
+  btn.style.display = 'none';
+
+  payosPolling = setInterval(async () => {
+    const { data: proj } = await supabase.from('projects').select('status').eq('id', project.id).single();
+    if (proj?.status === 'paid') {
+      clearInterval(payosPolling);
+      window.location.href = `/success.html?project_id=${project.id}&method=payos`;
+    }
+  }, 5000);
 }
 
 function showAlert(msg, type) {
